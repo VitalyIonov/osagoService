@@ -1,5 +1,7 @@
 import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
+import { createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/core';
 
 import { BrowserRouter, Switch, Route, Redirect } from 'common/components/router';
 import { SWRProvider } from 'common/components/SWRProvider';
@@ -9,20 +11,34 @@ import { PAGE_URLS } from 'common/constants/page';
 import { ROUTES } from './routes';
 import './styles/index.less';
 
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#000033',
+      error: '#880000'
+    },
+    secondary: {
+      main: '#880000',
+    },
+  },
+});
+
 const container = document.getElementById('root');
 
 const Application = () => (
   <BrowserRouter>
     <SWRProvider>
-      <Suspense fallback={<div className="loader" />}>
-        <Switch>
-          {ROUTES.map((route) => (
-            <Route key={route.path} {...route} />
-          ))}
-          <Route exact path="/" render={() => <Redirect to={makeUrl(PAGE_URLS.aggregator)} />} />
-          <Redirect to={makeUrl(PAGE_URLS.aggregator)} />
-        </Switch>
-      </Suspense>
+      <ThemeProvider theme={theme}>
+        <Suspense fallback={<div className="loader" />}>
+          <Switch>
+            {ROUTES.map((route) => (
+              <Route key={route.path} {...route} />
+            ))}
+            <Route exact path="/" render={() => <Redirect to={makeUrl(PAGE_URLS.aggregator)} />} />
+            <Redirect to={makeUrl(PAGE_URLS.aggregator)} />
+          </Switch>
+        </Suspense>
+      </ThemeProvider>
     </SWRProvider>
   </BrowserRouter>
 );
