@@ -10,3 +10,33 @@ export const INSURANCE_PERIODS = [
   { label: '11 месяцев', value: '11m' },
   { label: '12 месяцев', value: '12m' },
 ];
+
+export const INSURANCE_SERIES = [
+  { label: 'XXX', value: 'XXX' },
+  { label: 'CCC', value: 'CCC' },
+  { label: 'MMM', value: 'MMM' },
+  { label: 'KKK', value: 'KKK' },
+  { label: 'EEE', value: 'EEE' },
+  { label: 'BBB', value: 'BBB' },
+  { label: 'PPP', value: 'PPP' },
+];
+
+export const VEHICLE_BRANDS = [
+  { label: 'XXX', value: 'XXX' },
+  { label: 'CCC', value: 'CCC' },
+  { label: 'MMM', value: 'MMM' },
+  { label: 'KKK', value: 'KKK' },
+  { label: 'EEE', value: 'EEE' },
+  { label: 'BBB', value: 'BBB' },
+  { label: 'PPP', value: 'PPP' },
+];
+
+export const VEHICLE_MODELS = [
+  { label: 'XXX', value: 'XXX' },
+  { label: 'CCC', value: 'CCC' },
+  { label: 'MMM', value: 'MMM' },
+  { label: 'KKK', value: 'KKK' },
+  { label: 'EEE', value: 'EEE' },
+  { label: 'BBB', value: 'BBB' },
+  { label: 'PPP', value: 'PPP' },
+];

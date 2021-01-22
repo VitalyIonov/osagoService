@@ -16,9 +16,7 @@ const DatePicker = ({ className, required, label, input, meta, disablePast }) =>
     input.onChange(date);
   };
 
-  const hasError = !meta.pristine && meta.error;
-
-  console.log('meta', meta);
+  const hasError = !!(meta.touched && meta.error);
 
   return (
     <FormControl className={classNames(className, cnDatePicker())} error={hasError}>
@@ -34,8 +32,9 @@ const DatePicker = ({ className, required, label, input, meta, disablePast }) =>
           format="MM.dd.yyyy"
           label={label}
           value={input.value || null}
-          helperText={hasError && meta.error}
+          helperText={hasError ? meta.error : ''}
           error={hasError}
+          onBlur={(event) => input.onBlur(event)}
           onChange={handleChange}
           KeyboardButtonProps={{
             'aria-label': 'change date',

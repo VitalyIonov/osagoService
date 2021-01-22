@@ -13,7 +13,7 @@ const Select = ({ className, required, initialValue, label, input, meta, options
     input.onChange(event.target.value);
   };
 
-  const hasError = meta.touched && meta.error;
+  const hasError = !!(meta.touched && meta.error);
 
   return (
     <FormControl className={classNames(className, cnSelect())} error={hasError}>
@@ -32,7 +32,7 @@ const Select = ({ className, required, initialValue, label, input, meta, options
           <MenuItem key={item.label} value={item.value}>{item.label}</MenuItem>
         ))}
       </MUISelect>
-      {hasError && <FormHelperText>{meta.error}</FormHelperText>}
+      <FormHelperText>{hasError ? meta.error : ''}</FormHelperText>
     </FormControl>
   );
 };
@@ -48,7 +48,7 @@ Select.propTypes = {
   label: PropTypes.string,
   input: PropTypes.object,
   options: PropTypes.array,
-  meta: PropTypes.array
+  meta: PropTypes.object
 };
 
 export default Select;

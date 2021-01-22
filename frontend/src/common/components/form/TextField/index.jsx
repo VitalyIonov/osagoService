@@ -8,24 +8,28 @@ import './index.less';
 
 const cnTextField = block('text-field');
 
-const TextField = ({ className, required, input, meta, ...rest }) => {
+const TextField = ({ className, required, input, placeholder, type, meta, label, normalizer }) => {
   const handleChange = (event) => {
-    input.onChange(event.target.value);
+    const newValue = normalizer ? normalizer(event.target.value) : event.target.value;
+
+    input.onChange(newValue);
   };
 
-  const hasError = meta.touched && meta.error;
+  const hasError = !!(meta.touched && meta.error);
 
   return (
-    <FormControl className={classNames(className, cnTextField())} error={meta.error}>
+    <FormControl className={classNames(className, cnTextField())} error={hasError}>
       <MUITextField
         className={cnTextField('input')}
         required={required}
         {...input}
-        {...rest}
+        type={type}
+        placeholder={placeholder}
+        label={label}
         onChange={handleChange}
         error={hasError}
       />
-      {hasError && <FormHelperText>{meta.error}</FormHelperText>}
+      <FormHelperText>{hasError ? meta.error : ''}</FormHelperText>
     </FormControl>
   );
 };
@@ -33,10 +37,13 @@ const TextField = ({ className, required, input, meta, ...rest }) => {
 TextField.propTypes = {
   className: PropTypes.string,
   required: PropTypes.bool,
+  placeholder: PropTypes.string,
   initialValue: PropTypes.string,
   label: PropTypes.string,
+  type: PropTypes.string,
   input: PropTypes.object,
-  meta: PropTypes.object
+  meta: PropTypes.object,
+  normalizer: PropTypes.func
 };
 
 export default TextField;

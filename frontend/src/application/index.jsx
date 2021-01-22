@@ -14,12 +14,15 @@ import './styles/index.less';
 const theme = createMuiTheme({
   palette: {
     primary: {
-      main: '#000033',
+      main: '#0033AA',
       error: '#880000'
     },
     secondary: {
       main: '#880000',
     },
+  },
+  typography: {
+    fontSize: 12,
   },
 });
 

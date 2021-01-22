@@ -1,7 +1,75 @@
-.aggregation__form {
-  display: flex;
-}
+.aggregation {
+  width: 100%;
+  margin-top: 40px;
+  margin-bottom: 40px;
 
-.aggregation__field {
-  width: 300px;
+  .aggregation__form {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+  }
+
+  .aggregation__header {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+
+  .aggregation__title {
+    margin: 0 32px 0 0;
+  }
+
+  .aggregation__insurance {
+    margin-right: 40px;
+  }
+
+  .aggregation__section {
+    position: relative;
+    display: flex;
+    margin-bottom: 24px;
+    padding: 16px 20px 40px;
+    border: 1px solid @color-gray-60;
+    box-shadow: @box-shadow--medium;
+    background: @color-gray-20;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    &:before {
+      position: absolute;
+      content: '';
+      left: -15px;
+      top: -15px;
+      width: 30px;
+      height: 30px;
+      border: 15px solid transparent;
+      border-right: 15px solid @color-blue-70;
+      transform: rotate(45deg);
+    }
+  }
+
+  .aggregation__field {
+    width: 150px;
+    margin: 16px 24px 12px 0;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  .aggregation__field--m {
+    width: 200px;
+  }
+
+  .aggregation__field--l {
+    width: 250px;
+  }
+
+  .MuiFormHelperText-root {
+    position: absolute;
+    top: 100%
+  }
 }
