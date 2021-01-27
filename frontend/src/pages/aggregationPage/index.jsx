@@ -103,9 +103,16 @@ const AggregationPage = () => {
                       name="auto-number"
                       label="Гос. номер"
                       placeholder="т001тт97"
+                      disabled={values['without-auto-number']}
                       required
                       component={TextField}
                       validate={required}
+                    />
+                    <Field
+                      className={cnAggregation('field', { l: true })}
+                      name="without-auto-number"
+                      label="Без гос. номера>"
+                      component={Checkbox}
                     />
                   </div>
                   <div className={cnAggregation('row')}>

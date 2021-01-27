@@ -8,7 +8,7 @@ import './index.less';
 
 const cnTextField = block('text-field');
 
-const TextField = ({ className, required, input, placeholder, type, meta, label, normalizer }) => {
+const TextField = ({ className, required, input, disabled, placeholder, type, meta, label, normalizer }) => {
   const handleChange = (event) => {
     const newValue = normalizer ? normalizer(event.target.value) : event.target.value;
 
@@ -24,6 +24,7 @@ const TextField = ({ className, required, input, placeholder, type, meta, label,
         required={required}
         {...input}
         type={type}
+        disabled={disabled}
         placeholder={placeholder}
         label={label}
         variant="outlined"
@@ -42,6 +43,7 @@ TextField.propTypes = {
   placeholder: PropTypes.string,
   initialValue: PropTypes.string,
   label: PropTypes.string,
+  disabled: PropTypes.bool,
   type: PropTypes.string,
   input: PropTypes.object,
   meta: PropTypes.object,
