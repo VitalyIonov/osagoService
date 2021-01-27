@@ -16,15 +16,18 @@ const Select = ({ className, required, initialValue, label, input, meta, options
   const hasError = !!(meta.touched && meta.error);
 
   return (
-    <FormControl className={classNames(className, cnSelect())} error={hasError}>
-      <InputLabel htmlFor={input.name} required={required}>{label}</InputLabel>
+    <FormControl className={classNames(className, cnSelect())} variant="outlined" size="small" error={hasError}>
+      <InputLabel id={input.name} required={required}>{label}</InputLabel>
       <MUISelect
         {...input}
         {...rest}
         value={input.value}
         inputProps={{
-          id: input.name,
+          id: input.name
         }}
+        label={label}
+        onFocus={(event) => input.onFocus(event)}
+        onBlur={(event) => input.onBlur(event)}
         onChange={handleChange}
       >
         <MenuItem value="">Не выбрано</MenuItem>

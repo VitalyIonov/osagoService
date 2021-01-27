@@ -26,6 +26,8 @@ const TextField = ({ className, required, input, placeholder, type, meta, label,
         type={type}
         placeholder={placeholder}
         label={label}
+        variant="outlined"
+        size="small"
         onChange={handleChange}
         error={hasError}
       />

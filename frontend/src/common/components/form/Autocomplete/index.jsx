@@ -31,6 +31,8 @@ const Autocomplete = ({ className, required, label, input, meta, options }) => {
             name={input.name}
             required={required}
             label={label}
+            variant="outlined"
+            size="small"
             error={hasError}
             onBlur={(event) => input.onBlur(event)}
           />

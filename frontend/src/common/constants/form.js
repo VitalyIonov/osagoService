@@ -40,3 +40,26 @@ export const VEHICLE_MODELS = [
   { label: 'BBB', value: 'BBB' },
   { label: 'PPP', value: 'PPP' },
 ];
+
+export const VEHICLE_CATEGORIES = [
+  { label: 'A', value: 'A' },
+  { label: 'B', value: 'B' },
+  { label: 'C', value: 'C' },
+  { label: 'D', value: 'D' },
+  { label: 'E', value: 'E' },
+];
+
+export const USAGE_PURPOSES = [
+  { label: 'Личная', value: 'person' },
+  { label: 'Не личная', value: 'not-person' },
+];
+
+export const DOCUMENT_TYPES = [
+  { label: 'Паспорт ТС', value: 'passport' },
+  { label: 'Не паспорт ТС', value: 'not-passport' },
+];
+
+export const GENDERS = [
+  { label: 'Мужской', value: 'male' },
+  { label: 'Женский', value: 'female' },
+];

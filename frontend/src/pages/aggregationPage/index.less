@@ -28,8 +28,9 @@
   .aggregation__section {
     position: relative;
     display: flex;
+    flex-wrap: wrap;
     margin-bottom: 24px;
-    padding: 16px 20px 40px;
+    padding: 40px 20px 40px;
     border: 1px solid @color-gray-60;
     box-shadow: @box-shadow--medium;
     background: @color-gray-20;
@@ -52,20 +53,24 @@
   }
 
   .aggregation__field {
-    width: 150px;
-    margin: 16px 24px 12px 0;
+    width: 220px;
+    margin: 0 24px 0 0;
 
     &:last-child {
       margin-right: 0;
     }
   }
 
+  .aggregation__row {
+    margin-bottom: 32px;
+  }
+
   .aggregation__field--m {
-    width: 200px;
+    width: 250px;
   }
 
   .aggregation__field--l {
-    width: 250px;
+    width: 300px;
   }
 
   .MuiFormHelperText-root {

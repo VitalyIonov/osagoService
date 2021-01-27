@@ -4,9 +4,18 @@ import { Button } from '@material-ui/core';
 
 import { ContentContainer } from 'common/components/ContentContainer';
 import { FormBlock, FORM_BLOCK_TYPES } from 'common/components/FormBlock';
-import { TextField, Select, DatePicker, Autocomplete } from 'common/components/form';
+import { TextField, Select, DatePicker, Autocomplete, Checkbox } from 'common/components/form';
 import { block } from 'common/utils/classNames';
-import { INSURANCE_PERIODS, INSURANCE_SERIES, VEHICLE_BRANDS, VEHICLE_MODELS } from 'common/constants/form';
+import {
+  INSURANCE_PERIODS,
+  INSURANCE_SERIES,
+  VEHICLE_BRANDS,
+  VEHICLE_MODELS,
+  VEHICLE_CATEGORIES,
+  USAGE_PURPOSES,
+  DOCUMENT_TYPES,
+  GENDERS
+} from 'common/constants/form';
 import { required } from 'common/utils/validation';
 import { normalizeNumberByLength } from 'common/utils/normalization';
 import { isObjectEmpty } from 'common/utils/data';
@@ -42,7 +51,7 @@ const AggregationPage = () => {
                 </Button>
               </div>
               <div className={cnAggregation('section')}>
-                <FormBlock className={cnAggregation('insurance')}>
+                <FormBlock title="ИНФОРМАЦИЯ О СТРАХОВКЕ" type={FORM_BLOCK_TYPES.row}>
                   <Field
                     className={cnAggregation('field', { l: true })}
                     name="valid-from"
@@ -120,30 +129,209 @@ const AggregationPage = () => {
                     />
                     <Field
                       className={cnAggregation('field')}
-                      name="vehicle-model"
-                      label="Модель ТС"
+                      name="vehicle-category"
+                      label="Категория"
                       required
-                      component={Autocomplete}
+                      component={Select}
                       validate={required}
-                      options={VEHICLE_MODELS}
+                      options={VEHICLE_CATEGORIES}
                     />
                     <Field
                       className={cnAggregation('field')}
-                      name="vehicle-model"
-                      label="Модель ТС"
+                      name="vehicle-year"
+                      label="Год выпуска"
+                      normalizer={normalizeNumberByLength(4)}
+                      placeholder="2019"
+                      type="number"
                       required
-                      component={Autocomplete}
+                      component={TextField}
                       validate={required}
-                      options={VEHICLE_MODELS}
                     />
                     <Field
                       className={cnAggregation('field')}
-                      name="vehicle-model"
-                      label="Модель ТС"
+                      name="vehicle-power"
+                      label="Мощность"
+                      normalizer={normalizeNumberByLength(3)}
+                      placeholder="999"
+                      type="number"
                       required
-                      component={Autocomplete}
+                      component={TextField}
                       validate={required}
-                      options={VEHICLE_MODELS}
+                    />
+                  </div>
+                  <div className={cnAggregation('row')}>
+                    <Field
+                      className={cnAggregation('field')}
+                      name="usage-purpose"
+                      label="Цель использования"
+                      required
+                      component={Select}
+                      validate={required}
+                      options={USAGE_PURPOSES}
+                    />
+                  </div>
+                  <div className={cnAggregation('row')}>
+                    <Field
+                      className={cnAggregation('field')}
+                      name="document-type"
+                      label="Тип документа"
+                      required
+                      component={Select}
+                      validate={required}
+                      options={DOCUMENT_TYPES}
+                    />
+                    <Field
+                      className={cnAggregation('field')}
+                      name="document-series"
+                      label="Серия"
+                      normalizer={normalizeNumberByLength(4)}
+                      placeholder="99AA"
+                      required
+                      component={TextField}
+                      validate={required}
+                    />
+                    <Field
+                      className={cnAggregation('field')}
+                      name="document-number"
+                      label="Номер"
+                      normalizer={normalizeNumberByLength(6)}
+                      placeholder="999999"
+                      type="number"
+                      required
+                      component={TextField}
+                      validate={required}
+                    />
+                    <Field
+                      className={cnAggregation('field')}
+                      name="document-from"
+                      label="Дата выдачи"
+                      placeholder="01.01.2019"
+                      required
+                      component={DatePicker}
+                      validate={required}
+                    />
+                    <Field
+                      className={cnAggregation('field')}
+                      name="vin"
+                      label="VIN"
+                      normalizer={normalizeNumberByLength(16)}
+                      placeholder="9999999999999999"
+                      type="number"
+                      required
+                      component={TextField}
+                      validate={required}
+                    />
+                  </div>
+                  <div className={cnAggregation('row')}>
+                    <Field
+                      className={cnAggregation('field')}
+                      name="dk-number"
+                      label="Номер ДК"
+                      normalizer={normalizeNumberByLength(9)}
+                      placeholder="999999999"
+                      type="number"
+                      required
+                      component={TextField}
+                      validate={required}
+                    />
+                    <Field
+                      className={cnAggregation('field')}
+                      name="dk-duration"
+                      label="Срок действия ДК"
+                      placeholder="01.01.2025"
+                      required
+                      component={DatePicker}
+                      validate={required}
+                    />
+                    <Field
+                      className={cnAggregation('field', { l: true })}
+                      name="with-trailer"
+                      label="Используется с прицепом"
+                      component={Checkbox}
+                    />
+                  </div>
+                </FormBlock>
+              </div>
+              <div className={cnAggregation('section')}>
+                <FormBlock title="СТРАХОВАТЕЛЬ">
+                  <div className={cnAggregation('row')}>
+                    <Field
+                      className={cnAggregation('field')}
+                      name="surname"
+                      label="Фамилия"
+                      placeholder="Иванов"
+                      required
+                      component={TextField}
+                      validate={required}
+                    />
+                    <Field
+                      className={cnAggregation('field')}
+                      name="name"
+                      label="Имя"
+                      placeholder="Иван"
+                      required
+                      component={TextField}
+                      validate={required}
+                    />
+                    <Field
+                      className={cnAggregation('field')}
+                      name="patronymic"
+                      label="Отчество"
+                      placeholder="Иванович"
+                      component={TextField}
+                    />
+                    <Field
+                      className={cnAggregation('field')}
+                      name="birth-date"
+                      label="Дата рождения"
+                      placeholder="01.01.1999"
+                      required
+                      component={DatePicker}
+                      validate={required}
+                    />
+                    <Field
+                      className={cnAggregation('field')}
+                      name="gender"
+                      label="Пол"
+                      required
+                      component={Select}
+                      validate={required}
+                      options={GENDERS}
+                    />
+                  </div>
+                </FormBlock>
+                <FormBlock title="ПАСПОРТ">
+                  <div className={cnAggregation('row')}>
+                    <Field
+                      className={cnAggregation('field')}
+                      name="passport-series"
+                      label="Серия"
+                      placeholder="9999"
+                      type="number"
+                      required
+                      normalizer={normalizeNumberByLength(4)}
+                      component={TextField}
+                      validate={required}
+                    />
+                    <Field
+                      className={cnAggregation('field')}
+                      name="passport-number"
+                      label="Номер"
+                      placeholder="999999"
+                      type="number"
+                      required
+                      normalizer={normalizeNumberByLength(6)}
+                      component={TextField}
+                      validate={required}
+                    />
+                    <Field
+                      className={cnAggregation('field')}
+                      name="passport-from"
+                      label="Дата выдачи"
+                      placeholder="01.01.1999"
+                      required
+                      component={DatePicker}
+                      validate={required}
                     />
                   </div>
                 </FormBlock>

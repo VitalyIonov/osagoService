@@ -1,6 +1,7 @@
 import 'date-fns';
 import React from 'react';
 import PropTypes from 'prop-types';
+import ruLocale from 'date-fns/locale/ru';
 import DateFnsUtils from '@date-io/date-fns';
 import { FormControl } from '@material-ui/core';
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
@@ -11,7 +12,7 @@ import './index.less';
 
 const cnDatePicker = block('date-picker');
 
-const DatePicker = ({ className, required, label, input, meta, disablePast }) => {
+const DatePicker = ({ className, required, label, placeholder, input, meta, disablePast }) => {
   const handleChange = (date) => {
     input.onChange(date);
   };
@@ -20,7 +21,7 @@ const DatePicker = ({ className, required, label, input, meta, disablePast }) =>
 
   return (
     <FormControl className={classNames(className, cnDatePicker())} error={hasError}>
-      <MuiPickersUtilsProvider utils={DateFnsUtils}>
+      <MuiPickersUtilsProvider utils={DateFnsUtils} locale={ruLocale}>
         <KeyboardDatePicker
           className={cnDatePicker('input')}
           disableToolbar
@@ -28,9 +29,12 @@ const DatePicker = ({ className, required, label, input, meta, disablePast }) =>
           name={input.name}
           disablePast={disablePast}
           required={required}
-          variant="inline"
-          format="MM.dd.yyyy"
+          inputVariant="outlined"
+          size="small"
+          variant="outlined"
+          format="dd.MM.yyyy"
           label={label}
+          placeholder={placeholder}
           value={input.value || null}
           helperText={hasError ? meta.error : ''}
           error={hasError}
@@ -49,6 +53,7 @@ DatePicker.propTypes = {
   className: PropTypes.string,
   disablePast: PropTypes.bool,
   required: PropTypes.bool,
+  placeholder: PropTypes.string,
   label: PropTypes.string,
   input: PropTypes.object,
   meta: PropTypes.object
