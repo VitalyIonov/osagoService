@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { TextField as MUITextField, FormControl, FormHelperText, } from '@material-ui/core';
+import { formatPhoneNumber } from 'react-phone-number-input';
 
 import { block, classNames } from 'common/utils/classNames';
 
@@ -11,6 +12,9 @@ const cnTextField = block('text-field');
 const TextField = ({ className, required, input, disabled, placeholder, type, meta, label, normalizer }) => {
   const handleChange = (event) => {
     const newValue = normalizer ? normalizer(event.target.value) : event.target.value;
+
+    console.log('event.target.value', event.target.value);
+    console.log('format', formatPhoneNumber('+23'));
 
     input.onChange(newValue);
   };

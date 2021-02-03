@@ -4,7 +4,7 @@ import { Button } from '@material-ui/core';
 
 import { ContentContainer } from 'common/components/ContentContainer';
 import { FormBlock, FORM_BLOCK_TYPES } from 'common/components/FormBlock';
-import { TextField, Select, DatePicker, Autocomplete, Checkbox } from 'common/components/form';
+import { TextField, Select, DatePicker, Autocomplete, Checkbox, TextFieldMask } from 'common/components/form';
 import { block } from 'common/utils/classNames';
 import {
   INSURANCE_PERIODS,
@@ -16,7 +16,7 @@ import {
   DOCUMENT_TYPES,
   GENDERS
 } from 'common/constants/form';
-import { required } from 'common/utils/validation';
+import { composeValidators, required, isValidPhone, isValidEmail } from 'common/utils/validation';
 import { normalizeNumberByLength } from 'common/utils/normalization';
 import { isObjectEmpty } from 'common/utils/data';
 
@@ -339,6 +339,28 @@ const AggregationPage = () => {
                       required
                       component={DatePicker}
                       validate={required}
+                    />
+                  </div>
+                  <div className={cnAggregation('row')}>
+                    <Field
+                      className={cnAggregation('field')}
+                      name="email"
+                      label="Email"
+                      placeholder="email@mail.ru"
+                      required
+                      component={TextField}
+                      validate={composeValidators(required, isValidEmail)}
+                    />
+                    <Field
+                      className={cnAggregation('field')}
+                      name="phone"
+                      label="Телефон"
+                      maskChar=" "
+                      required
+                      placeholder="+7(999)999-99-99"
+                      mask="+7(999)999-99-99"
+                      component={TextFieldMask}
+                      validate={composeValidators(required, isValidPhone)}
                     />
                   </div>
                 </FormBlock>
