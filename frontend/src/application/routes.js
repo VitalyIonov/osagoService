@@ -1,9 +1,6 @@
-import React from 'react';
-
 import { PAGE_URLS } from 'common/constants/page';
 import { makeUrl } from 'common/utils/url';
-
-const AggregationPage = React.lazy(() => import('pages/aggregationPage'));
+import AggregationPage from 'pages/aggregationPage';
 
 const ROUTES = [
   {

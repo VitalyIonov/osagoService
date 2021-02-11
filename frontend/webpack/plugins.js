@@ -19,7 +19,7 @@ function developmentPlugins(stylesFileName, viewFileName) {
     new HtmlWebpackPlugin({
       inject: true,
       template: resolve(__dirname, '..', 'views', 'index.html'),
-      filename: viewFileName
+      filename: viewFileName,
     }),
     // изучить подробнее
     new PreloadWebpackPlugin({
@@ -38,13 +38,13 @@ function productionPlugins(faviconPath, manifestPath, outputPath) {
         discardComments: { removeAll: true }
       }
     }),
-    new CopyWebpackPlugin({
-      patterns: [
-        { from: faviconPath, to: resolve(outputPath, 'favicons') },
-        { from: manifestPath, to: resolve(outputPath) }
-      ]
-    })
-  ]
+    // new CopyWebpackPlugin({
+    //   patterns: [
+    //     { from: faviconPath, to: resolve(outputPath, 'favicons') },
+    //     { from: manifestPath, to: resolve(outputPath) }
+    //   ]
+    // })
+  ];
 }
 
 module.exports = {

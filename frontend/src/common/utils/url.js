@@ -4,9 +4,9 @@ export const makeUrl = (...urls) => {
   if (
     urls.length === 0
     || (urls.length === 1 && !urls[0])
-  ) return '/';
+  ) return '/osagoService/';
 
-  return `/${urls.join('/')}/`;
+  return `/osagoService/${urls.join('/')}/`;
 };
 
 export const makeUrlSearch = params => {

@@ -1,5 +1,5 @@
 export const PAGE_URLS = {
   home: '',
-  aggregator: 'aggregator',
+  aggregator: '',
   calculations: 'calculations',
 };

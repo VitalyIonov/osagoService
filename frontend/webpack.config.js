@@ -33,7 +33,7 @@ module.exports = {
   output: {
     filename: scriptsFileName,
     path: outputPath,
-    publicPath: '/',
+    publicPath: '',
   },
 
   resolve: {
@@ -42,18 +42,6 @@ module.exports = {
       application: resolve(srcPath, 'application'),
       common: resolve(srcPath, 'common'),
       pages: resolve(srcPath, 'pages'),
-    }
-  },
-
-  optimization: {
-    splitChunks: {
-      cacheGroups: {
-        common: {
-          test: /[\\/](node_modules)[\\/]/,
-          name: 'common',
-          chunks: 'all'
-        }
-      }
     }
   },
 
