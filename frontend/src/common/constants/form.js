@@ -63,3 +63,8 @@ export const GENDERS = [
   { label: 'Мужской', value: 'male' },
   { label: 'Женский', value: 'female' },
 ];
+
+export const DRIVERS = [
+  { label: 'Без ограничений', value: 'without-restrictions' },
+  { label: '1 или более', value: 'one-or-more' },
+];

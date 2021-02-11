@@ -1,1 +1,1 @@
-export const API_DOMAIN = '/blablabla';
+export const API_DOMAIN = 'https://reqres.in';

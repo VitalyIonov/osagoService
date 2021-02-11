@@ -25,6 +25,7 @@ const DatePicker = ({ className, required, label, placeholder, input, meta, disa
         <KeyboardDatePicker
           className={cnDatePicker('input')}
           disableToolbar
+          autoOk
           id={input.name}
           name={input.name}
           disablePast={disablePast}

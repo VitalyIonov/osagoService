@@ -4,7 +4,7 @@ import { Button } from '@material-ui/core';
 
 import { ContentContainer } from 'common/components/ContentContainer';
 import { FormBlock, FORM_BLOCK_TYPES } from 'common/components/FormBlock';
-import { TextField, Select, DatePicker, Autocomplete, Checkbox, TextFieldMask } from 'common/components/form';
+import { TextField, Select, DatePicker, Autocomplete, AsyncAutocomplete, Checkbox, TextFieldMask, RadioButtons } from 'common/components/form';
 import { block } from 'common/utils/classNames';
 import {
   INSURANCE_PERIODS,
@@ -14,11 +14,13 @@ import {
   VEHICLE_CATEGORIES,
   USAGE_PURPOSES,
   DOCUMENT_TYPES,
-  GENDERS
+  GENDERS,
+  DRIVERS
 } from 'common/constants/form';
 import { composeValidators, required, isValidPhone, isValidEmail } from 'common/utils/validation';
 import { normalizeNumberByLength } from 'common/utils/normalization';
 import { isObjectEmpty } from 'common/utils/data';
+import { getAddress } from 'common/sources/aggregator';
 
 import './index.less';
 
@@ -45,7 +47,7 @@ const AggregationPage = () => {
                 <Button
                   variant="outlined"
                   color="secondary"
-                  onClick={() => form.reset({})}
+                  onClick={() => form.reset({ drivers: DRIVERS[0].value })}
                 >
                   Очистить форму
                 </Button>
@@ -111,7 +113,7 @@ const AggregationPage = () => {
                     <Field
                       className={cnAggregation('field', { l: true })}
                       name="without-auto-number"
-                      label="Без гос. номера>"
+                      label="Без гос. номера"
                       component={Checkbox}
                     />
                   </div>
@@ -343,6 +345,15 @@ const AggregationPage = () => {
                   </div>
                   <div className={cnAggregation('row')}>
                     <Field
+                      className={cnAggregation('field', { xxl: true })}
+                      name="address"
+                      label="Адрес"
+                      required
+                      source={getAddress}
+                      component={AsyncAutocomplete}
+                      validate={required}
+                    />
+                    <Field
                       className={cnAggregation('field')}
                       name="email"
                       label="Email"
@@ -363,6 +374,27 @@ const AggregationPage = () => {
                       validate={composeValidators(required, isValidPhone)}
                     />
                   </div>
+                </FormBlock>
+              </div>
+              <div className={cnAggregation('section')}>
+                <FormBlock title="СОБСТВЕННИК" type={FORM_BLOCK_TYPES.row}>
+                  <Field
+                    className={cnAggregation('field', { l: true })}
+                    name="owner"
+                    label="Совпадает со страхователем"
+                    component={Checkbox}
+                  />
+                </FormBlock>
+              </div>
+              <div className={cnAggregation('section')}>
+                <FormBlock title="ВОДИТЕЛИ" type={FORM_BLOCK_TYPES.row}>
+                  <Field
+                    className={cnAggregation('field', { ['auto-size']: true })}
+                    name="drivers"
+                    initialValue={DRIVERS[0].value}
+                    scheme={DRIVERS}
+                    component={RadioButtons}
+                  />
                 </FormBlock>
               </div>
               <div className={cnAggregation('footer')}>
